@@ -1,0 +1,33 @@
+\input{setup}
+
+\begin{document}
+
+% -----------------------------------------------------------
+% Prep
+% -----------------------------------------------------------
+\pagenumbering{roman} % Start Roman numeral numbering
+\input{titlepage}
+\input{contents}
+\input{abstract}
+\pagenumbering{arabic} % Switch to Arabic numeral numbering
+
+
+% -----------------------------------------------------------
+% Sections
+% -----------------------------------------------------------
+\input{sections/introduction}
+\input{sections/theoreticalFoundations}
+\input{sections/hpc}
+\input{sections/fem}
+
+
+
+\input{sections/conclusion}
+
+
+% -----------------------------------------------------------
+% Reference
+% -----------------------------------------------------------
+\bibliography{ref}
+
+\end{document}

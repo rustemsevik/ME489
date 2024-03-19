@@ -1,0 +1,31 @@
+\section{Finite element adaptivity}
+The MFEM library exhibits comprehensive capabilities in both serial and parallel finite element adaptivity, applicable to high-order, unstructured meshes. This adaptivity includes local conforming mesh refinement for triangular and tetrahedral meshes (termed conforming h-adaptivity), and non-conforming adaptive mesh refinement for quadrilateral and hexahedral meshes (non-conforming h-adaptivity). Additionally, the library supports mesh optimization through node movement, known as r-adaptivity. A notable aspect of MFEM is its unified framework for local refinement on both simplex and tensor-product elements. The library's functions are further elaborated in subsequent sections. Moreover, MFEM extends its capabilities through integration with RPI’s parallel unstructured mesh infrastructure (PUMI), providing additional tools for parallel conforming mesh adaptivity and modification.
+
+
+Performance tests, as shown in Table \ref{table_1}, demonstrate the positive impact of GPU acceleration on MFEM.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llllll}
+    \hline & & $p=1$ & $p=2$ & $p=4$ & $p=8$ \\
+    \hline 
+    \multirow{4}{*}{ GPU } & OCCA-CUDA & 0.52 & 0.31 & 0.20 & 0.19 \\
+    & RAJA-CUDA & 0.38 & 0.30 & 0.28 & 0.45 \\
+    & CUDA & 0.36 & 0.26 & 0.17 & 0.15 \\
+    Multicore & CEED-CUDA & $\mathbf{0 . 1 9}$ & $\mathbf{0 . 1 5}$ & $\mathbf{0 . 1 2}$ & $\mathbf{0 . 1 2}$ \\
+    \hline & OCCA-OMP & 3.34 & 2.41 & 2.13 & 1.95 \\
+    & RAJA-OMP & 3.32 & 2.45 & 2.10 & 1.87 \\
+    & OMP & 3.30 & 2.46 & 2.10 & 1.86 \\
+    & MPI & $\mathbf{2 . 7 2}$ & $\mathbf{1 . 6 6}$ & $\mathbf{1 . 4 5}$ & $\mathbf{1 . 4 4}$ \\
+    \hline 
+    \multirow{4}{*}{ CPU } & OCCA-CPU & $\mathbf{2 1 . 0 5}$ & $\mathbf{1 5 . 7 7}$ & 14.23 & 14.53 \\
+    & RAJA-CPU & 45.42 & 16.53 & 14.22 & 14.88 \\
+    & CPU & 25.18 & 16.11 & 13.73 & 14.45 \\
+    & CEED-AVX & 43.04 & 18.16 & 11.20 & 8.53 \\
+    & CEED-XSMM & 53.80 & 20.13 & $\mathbf{1 0 . 7 3}$ & $\mathbf{7 . 7 2}$ \\
+    \hline
+    \end{tabular}
+    \caption{Performance results with MFEM-4.0: Poisson problem (Example 1)}
+    \label{table_1}
+\end{table}
+
