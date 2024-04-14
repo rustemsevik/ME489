@@ -1,0 +1,29 @@
+\newpage
+\section{Theoretical Background}
+
+K-means clustering is a method that groups \( n \) observations into \( k \) clusters. Each observation is assigned to the cluster with the closest center, or centroid, \( \mu_j \), for \( j = 1, \ldots, k \). This process helps to minimize the differences within each cluster.
+
+
+\subsection{Objective Function}
+The objective of K-means is to minimize the within-cluster sum of squares (WCSS). Mathematically, the objective function is defined as:
+\[
+J = \sum_{j=1}^k \sum_{x_i \in C_j} \| x_i - \mu_j \|^2
+\]
+
+\subsection{Algorithm}
+The K-means algorithm involves the following steps:
+\begin{enumerate}
+    \item \textbf{Initialization}: Select \( k \) initial cluster centers randomly or by some heuristic.
+    \item \textbf{Assignment}: Assign each data point \( x_i \) to the nearest cluster by minimizing the distance to the cluster centers:
+    \[
+    \text{argmin}_j \| x_i - \mu_j \|
+    \]
+    \item \textbf{Update}: Recompute each cluster center \( \mu_j \) by calculating the centroid of all points assigned to \( C_j \):
+    \[
+    \mu_j = \frac{1}{|C_j|} \sum_{x_i \in C_j} x_i
+    \]
+    \item \textbf{Iteration}: Repeat the assignment and update steps until the assignments do not change or the improvement in \( J \) is below a certain threshold.
+\end{enumerate}
+
+\subsection{Convergence}
+As stated in the \cite{IKOTUN2023178} the K-means algorithm is guaranteed to converge to a local minimum or a saddle point of \( J \), though not necessarily the global minimum. The choice of initial centers significantly affects the algorithm's results.
