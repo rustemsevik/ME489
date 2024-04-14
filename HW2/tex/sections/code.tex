@@ -1,0 +1,35 @@
+\newpage
+\section{Code Structure}
+
+\subsection{Input Handling}
+
+Initially the input file is read. Subsequently the data file is read by using the parameters supplied by the input file. 
+\lstinputlisting[firstline=10, lastline=43, language=C]{codes/code.c}
+
+\subsection{Helper Functions}
+
+Function to calculate the Euclidean distance between two points as follows
+\lstinputlisting[firstline=46, lastline=52, language=C]{codes/code.c}
+
+Function to assign data points to the nearest centroid
+\lstinputlisting[firstline=54, lastline=72, language=C]{codes/code.c}
+
+Function to update the centroids. First it reset centroids and counts, after it sum ups and counts points for each cluster. Then it divides by count to get the new centroids. 
+\lstinputlisting[firstline=74, lastline=100, language=C]{codes/code.c}
+
+To initialize the k-means algorithm one needs to initialize the program by providing some initial data points. It can either be selected randomly or can be selected by using various heuristic functions. In this report median based initializing method is utilized as follows.
+
+When using median-based initialization for k-means clustering, the effectiveness depends on whether the data is pre-sorted. If sorted, this method strategically distributes initial centroids, leading to potentially better and faster results. If the data isn't sorted, the initialization resembles a random placement of centroids, which is an also acceptable method in k-means algorithms. So the algorithm could be enhanced by incorporating a sorting method; however, since the existing strategy already yields satisfactory results, this addition has not been considered.
+
+\lstinputlisting[firstline=102, lastline=121, language=C]{codes/code.c}
+
+For checking the convergence of the centroids following function is utilized.
+\lstinputlisting[firstline=124, lastline=131, language=C]{codes/code.c}
+
+\subsection{Main Function}
+The main function starts by verifying that exactly two command-line arguments are provided (an input file and a data file); if not, it prints an error message and exits. The function reads input parameters from the first file and data points from the second. It allocates memory for centroids and clusters, initializes the centroids using a median-based method, and then iteratively assigns data points to the nearest centroid, updates centroids, and checks for convergence based on a specified tolerance. The results, including cluster assignments and centroids, are then written to \texttt{output.dat} and \texttt{centroids.dat} files. The function ends by releasing the allocated memory.
+\lstinputlisting[firstline=133, lastline=248, language=C]{codes/code.c}
+
+\subsection{Plotting}
+Plotting are done using matplotlib library of python. The following code inputs the \texttt{output.dat} file and plots the data.
+\lstinputlisting[language=python]{codes/plots.py}
