@@ -1,0 +1,56 @@
+\section{Overview of Open Multi-Processing (OpenMP)}
+
+Open Multi-Processing (OpenMP) is an API for parallel, shared memory programming, which aims to increase computational performance by using multi-core processors.
+
+\subsection{Key Concepts and Features of OpenMP}
+\begin{itemize}
+    \item \textbf{Parallel Regions:} OpenMP enables multiple threads to execute code simultaneously by creating parallel regions by using the \texttt{\#pragma omp parallel} clause.
+    \item \textbf{Thread Management:} It has a selection of the number of threads feature for parallel execution. \texttt{omp\_set\_num\_threads} and \texttt{omp\_get\_thread\_num} functions are responsible of these operations.
+    \item \textbf{Synchronization:} OpenMP has various methods for synchronization. Mainly used ones are critical sections and atomic operations.
+    \item \textbf{Data Environment:} It has the shared and private data management among threads.
+\end{itemize}
+
+\subsection{Usage Considerations}
+OpenMP is powerful for creating parallel applications but the aspects like data dependency, race conditions, and the overhead of managing parallelism has to be considered while parallelizing a code in order to ensure efficient and correct implementation.
+
+\subsection{Commonly Used OpenMP Directives and Functions}
+\begin{table}[H]
+\caption{Summary of OpenMP API functions.}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}m{6cm}|m{10cm}}
+\hline
+\textbf{Action} & \textbf{OpenMP API call} \\
+\hline
+Set number of threads in subsequent parallel regions & \texttt{omp\_set\_num\_threads([NUMBER OF THREADS]);} \\
+Get number of threads in a parallel region & \texttt{int numThreads = omp\_get\_num\_threads();} \\
+Get thread index inside a parallel region & \texttt{omp\_get\_thread\_num();} \\
+Get wall clock time & \texttt{double t = omp\_get\_wtime();} \\
+\hline
+\end{tabular}
+\label{table:openmp_api_functions}
+\end{table}
+
+\begin{table}[H]
+\caption{Summary of commonly used OpenMP directives.}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}m{6cm}|m{10cm}}
+\hline
+\textbf{Action} & \textbf{OpenMP directive} \\
+\hline
+Create a parallel region & \texttt{\#pragma omp parallel} \\
+\ldots with shared/private vars & \texttt{\#pragma omp parallel shared([SHARED VARS]) \newline private([PRIVATE VARS])} \\
+\ldots with no default vars & \texttt{\#pragma omp parallel default(none) \newline shared([SHARED VARS]) private([PRIVATE VARS])} \\
+Partition a loop inside parallel region & \texttt{\#pragma omp for} \\
+Create a parallel region to parallelize a for loop & \texttt{\#pragma omp parallel for} \\
+\hline \hline
+Serialize code in part of a parallel region & \texttt{\#pragma omp critical} \\
+Serialize some arithmetic operations & \texttt{\#pragma omp atomic} \\
+\
+Add a variable to be reduced in a parallel region & \texttt{\#pragma omp parallel reduction([OP]:[VARIABLE NAME])} \\
+\hline
+\end{tabular}
+\label{table:openmp_directives}
+\end{table}
+
+
+Table \ref{table:openmp_directives} and table \ref{table:openmp_api_functions} are taken from lecture notes.

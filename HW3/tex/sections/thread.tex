@@ -1,0 +1,20 @@
+\section{Impact of Thread Count}
+Number of used threads plays a crucial role in execution duration of the code. We expect that as the number of threads go up the execution duration should decrease. We have executed the code for varying the parameter \texttt{NUMBER\_OF\_THREADS} from 1 to 5 for all different data and the plot the execution duration versus number of threads. 
+
+\subsection{Birch3}
+\input{figures/birch3}
+
+\subsection{Circle}
+\input{figures/circle}
+
+\subsection{Hepta}
+\input{figures/hepta}
+
+\subsection{Isolation}
+\input{figures/isolation}
+
+\subsection{Smile}
+\input{figures/smile}
+
+We can see that there is not an absolute monotonic decaying behavior observed when the thread number increased. This might occur in data such that the number of data-points are small and the atomic operations make the execution more time consuming. This behavior can be observed in the figures \ref{fig:circle}, \ref{fig:hepta} and \ref{fig:smile}. It can be observed from the figure \ref{fig:birch} when the data points are relatively large, increasing the thread number results in a monotonic decaying execution duration. 
+

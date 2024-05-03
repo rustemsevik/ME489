@@ -1,0 +1,31 @@
+\section{Code Structure and Parallelization Selection}
+Since the general code structure is the same as the homework 1, this section only explains the changes made to the code of the first homework. The code is based on the posted solution of homework 1.
+
+\subsection{\texttt{assignPoints} Function}
+The \texttt{assignPoints} function includes 2 separate for loops one of it which is a nested for loop consisting of 2 for loops. 
+
+\subsubsection{Clause Selection}
+\lstinputlisting[firstline=118, lastline=121, language=C]{codes/code.c}
+This for loop is for setting all the values to zero thus this will not cause a race condition, so it is safe to create and use a parallel region with shared variables by using the clause \texttt{\#pragma omp parallel for}. \\
+
+\lstinputlisting[firstline=123, lastline=140, language=C]{codes/code.c} 
+This for loop is a nested for loop which consist of 2 loops. Since the variables used in the inside for loop depends on the outer for loop, there is only one clause \texttt{\#pragma omp parallel for} prior the outside for loop. After the inside for loop the clause \texttt{\#pragma omp atomic} is used in order to protect (and serialize) increments to a shared accumulator. 
+
+
+\subsection{\texttt{updateCentroids} Function}
+The \texttt{updateCentroids} function includes 3 separate for loops all of them are nested for loops consisting of 2 for loops. 
+
+\subsubsection{Clause Selection}
+\lstinputlisting[firstline=147, lastline=153, language=C]{codes/code.c}
+These loops is to copy \texttt{Cm} into \texttt{CmCopy} for later comparison. Subsequently centroids in \texttt{Cm} are reset to zero for recalculating. Since these operations will not cause a race condition, it is safe to create and use a parallel region with shared variables by using the clause \texttt{\#pragma omp parallel for} because each iteration of the loop is independent; the operations within one iteration (copying and zeroing centroid values) do not affect the operations in other iterations. \\
+
+\lstinputlisting[firstline=155, lastline=163, language=C]{codes/code.c}
+Here, the for loops are to accumulate the dimensions of all points assigned to each cluster. Since the variables used in the inside for loop depends on the outer for loop, there is only one clause \texttt{\#pragma omp parallel for} prior the outside for loop. In the code the \texttt{default(none)} clause explicitly declares the sharing mode of the variables. It is known that accumulation operations should be done in a way so that it prevents the race condition, hence the clause \texttt{\#pragma omp atomic} is used in order to protect (and serialize) increments to a shared accumulator. \\
+
+\lstinputlisting[firstline=166, lastline=172, language=C]{codes/code.c}
+In these for loops each centroid's coordinates are averaged based on the number of points in the cluster \texttt{Ck[n]}. \texttt{err} tracks the maximum difference in any centroid's position. This is used to determine the condition to move on or stop. These operations are done in these nested for loops which is parallelized by the clause \texttt{\#pragma omp parallel for default(none) shared(Cm, CmCopy, Ck, Nd, Nc) reduction(max:err)}. This clause parallelizes the loop and adds a reduction clause for the variable \texttt{err}. This clause perform a reduction on the variable err using the max operation. After this it combines the values from each thread to find the maximum value among all threads. By using the reduction method it prevents the race condition among the threads.
+
+\subsection{\texttt{main} Function}
+Since the \texttt{NUMBER\_OF\_THREADS} parameter is added to the \texttt{input.dat} file, the following code are added to the main function in order to take the working thread count from the input file.
+
+\lstinputlisting[firstline=217, lastline=219, language=C]{codes/code.c}
