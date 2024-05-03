@@ -195,7 +195,7 @@ void kMeans(double *data, int *Ci, int *Ck, double *Cm) {
     while (err > TOL) {
         assignPoints(data, Ci, Ck, Cm);
         err = updateCentroids(data, Ci, Ck, Cm);
-        printf("\r Iteration %d %.12e\n", sk, err);
+        // printf("\r Iteration %d %.12e\n", sk, err);
         sk++;
         fflush(stdout);
     }
