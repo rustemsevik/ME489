@@ -1,0 +1,71 @@
+\ProvidesPackage{code}
+
+\RequirePackage{moresize}
+\RequirePackage{listings}
+\RequirePackage{color}
+
+% Define colors
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backgray}{rgb}{0.9,0.9,0.9}
+\definecolor{backblack}{rgb}{0.7,0.7,0.7}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\definecolor{comment}{RGB}{0,128,0} % dark green
+\definecolor{string}{RGB}{255,0,0}  % red
+\definecolor{keyword}{RGB}{0,0,255} % blue
+
+% Setup the listings package
+\lstset{
+    language=C,
+    backgroundcolor=\color{backcolour},   % Background color
+    commentstyle=\color{codegreen},       % Comments style
+    keywordstyle=\color{blue},            % Keyword style
+    numberstyle=\tiny\color{codegray},    % Line number style
+    stringstyle=\color{codepurple},       % String style
+    basicstyle=\footnotesize\ttfamily,    % Code font style
+    breakatwhitespace=false,              % Break lines at whitespace
+    breaklines=true,                      % Automatic line breaking
+    captionpos=b,                         % Caption position bottom
+    keepspaces=true,                      % Keep spaces
+    numbers=left,                         % Line numbers on the left
+    numbersep=10pt,                       % How far the line numbers are from the code
+    showspaces=false,                     % Show spaces in code
+    showstringspaces=false,               % Underline spaces within strings
+    showtabs=false,                       % Show tabs within strings with a particular underscore
+    tabsize=2,                            % Tab size
+    frame=lines,                          % Adds lines top and bottom of the code
+    rulecolor=\color{black},              % If not set, the frame-color may be changed on line-breaks within not-black text
+    framesep=10pt,                        % Margin size between frame and code
+    framexleftmargin=5pt,                % Extra margin size on the left side of frame
+    framexbottommargin=5pt,               % Extra margin size on the bottom side of frame
+    escapeinside={\%*}{*)},               % If you want to add LaTeX within your code
+    morekeywords={printf},                % If you want to add more keywords to the set
+}
+
+\lstdefinestyle{output}{
+    \scriptsize, 
+    backgroundcolor=\color{backgray},
+    basicstyle= \color{black} \ttfamily,
+    frame=lines,
+    rulecolor=\color{black},
+    stringstyle=\color{red},
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false
+    breakatwhitespace=false, 
+}
+
+\lstdefinestyle{terminal}{
+    \footnotesize, 
+    backgroundcolor=\color{backblack},
+    basicstyle= \color{black} \ttfamily,
+    frame=lines,
+    rulecolor=\color{black},
+    stringstyle=\color{red},
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false
+    breakatwhitespace=false, 
+}

@@ -1,0 +1,75 @@
+\section{Overview of Message Passing Interface (MPI)}
+
+The Message Passing Interface (MPI) is a standardized and portable message-passing system designed to function on parallel computing architectures. MPI enables the development of scalable and efficient parallel applications across multiple interconnected systems, facilitating high-performance computing tasks.
+
+\subsection{Key Concepts and Features of MPI}
+\begin{itemize}
+    \item \textbf{Point-to-Point Communication:} MPI supports direct communication between pairs of processes using functions such as \texttt{MPI\_Send} and \texttt{MPI\_Recv}.
+    \item \textbf{Collective Communication:} MPI includes collective communication operations, such as broadcast, scatter, gather, and reduction, allowing data exchange among all processes in a communicator.
+    \item \textbf{Process Topology:} MPI provides mechanisms to define and utilize process topologies, aiding in the structuring of communication patterns for various algorithms.
+    \item \textbf{Synchronization:} MPI ensures synchronization among processes using barriers and other synchronization primitives to coordinate parallel tasks.
+\end{itemize}
+
+\subsection{Usage Considerations}
+While MPI is powerful for distributed memory parallel applications, considerations such as communication overhead, network latency, and load balancing are crucial for optimizing performance and ensuring efficient implementation. Proper handling of these aspects can mitigate potential bottlenecks and improve scalability.
+
+\subsection{Commonly Used MPI Functions and Directives}
+
+\begin{table}[H]
+\caption{Summary of MPI API functions.}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}m{6cm}|m{10cm}}
+\hline
+\textbf{Action} & \textbf{Action implemented using MPI functions} \\
+\hline
+Compile MPI code & \texttt{mpicc -o [EXECUTABLE] [SOURCE FILE NAME].c -lm} \\
+\hline
+Execute MPI code & \texttt{mpiexec -n [NUMBER OF RANKS] [EXECUTABLE] [ARGS]} \\
+\hline
+Initialize MPI & \texttt{MPI\_Init(\&argc, \&argv);} \\
+\hline
+Finalize MPI & \texttt{MPI\_Finalize();} \\
+\hline
+Get MPI process count & \texttt{MPI\_Comm\_size([MPI COMMUNICATOR],\&size);} \\
+\hline
+Get MPI process index (aka rank) & \texttt{MPI\_Comm\_rank([MPI COMMUNICATOR],\&rank);} \\
+\hline
+Blocking send & \texttt{MPI\_Send([SEND BUFFER], [NUM DATA], [MPI DATA TYPE], [DESTINATION], [TAG], [COMMUNICATOR]);} \\
+\hline
+Blocking receive & \texttt{MPI\_Recv([RECEIVE BUFFER], [NUM DATA], [MPI DATA TYPE], [SOURCE], [TAG], [COMMUNICATOR], [STATUS PTR]);} \\
+\hline
+Non-blocking send & \texttt{MPI\_Isend([SEND BUFFER], [NUM DATA], [MPI DATA TYPE], [DESTINATION], [TAG], [COMMUNICATOR], [REQUEST PTR]);} \\
+\hline
+Non-blocking receive & \texttt{MPI\_Irecv([RECEIVE BUFFER], [NUM DATA], [MPI DATA TYPE], [SOURCE], [TAG], [COMMUNICATOR], [REQUEST PTR]);} \\
+\hline
+Block until request finishes & \texttt{MPI\_Wait([REQUEST PTR], [STATUS PTR]);} \\
+\hline
+\end{tabular}
+\label{table:mpi_directives}
+\end{table}
+
+\begin{table}[H]
+    \caption{Summary of MPI collective communications.}
+    \centering
+    \begin{tabular}{c|l|l}
+    \hline Operation & Description & MPI function \\
+    \hline Broadcast & One process sends a message to all other processes & \texttt{MPI\_Bcast} \\
+    \hline Sum reduction & \begin{tabular}{l} 
+    All processes collaborate to sum up a value held \\
+    by each process with the final result available to \\
+    one process
+    \end{tabular} & \texttt{MPI\_Reduce} \\
+    \hline Barrier & \begin{tabular}{l} 
+    All processes must enter the barrier function be- \\
+    fore any process can leave the barrier function
+    \end{tabular} & \texttt{MPI\_Barrier} \\
+    \hline All to all & \begin{tabular}{l} 
+    All processes send a message (of the same length) \\
+    to all other processes
+    \end{tabular} & \texttt{MPI\_Alltoall} \\
+    \hline
+    \end{tabular}
+    \label{table:mpi_collective}
+\end{table}
+Table \ref{table:mpi_directives} and table \ref{table:mpi_collective} are taken from lecture notes.
+

@@ -1,0 +1,47 @@
+\section{Code Structure and Message Passing Method Selection}
+Since the general code structure is the same as the homework 2, this section only explains the changes made to the code of the previous homework. The code is based on the posted solution of homework 2.
+
+\subsection{\texttt{main} Function}
+The \texttt{main} function includes initialization of \texttt{MPI}, and decleration of necessary parameters by the following codes.
+\lstinputlisting[firstline=202, lastline=220, language=C]{codes/code.c}
+Necessary variables are broadcast to all processes by following lines.
+
+\lstinputlisting[firstline=222, lastline=239, language=C]{codes/code.c}
+
+The start end the and points of the separate processes are calculated  as follows.
+\lstinputlisting[firstline=241, lastline=244, language=C]{codes/code.c}
+
+With MPI Gatherv function we collect the cluster numbers of elements in a different processors.
+\lstinputlisting[firstline=248, lastline=262, language=C]{codes/code.c}
+
+\lstinputlisting[firstline=265, lastline=278, language=C]{codes/code.c}
+
+
+ Finalization of the \texttt{MPI} is executed by the following line.
+\lstinputlisting[firstline=285, lastline=285, language=C]{codes/code.c}
+
+
+ 
+\subsection{\texttt{assignPoints} Function}
+The \texttt{assignPoints} function is modified to take the start and end points as follows:
+\lstinputlisting[firstline=106, lastline=106, language=C]{codes/code.c}
+
+
+\subsection{\texttt{updateCentroids} Function}
+
+
+We have utilized use \texttt{MPI\_Allreduce} to aggregate the local sums "\texttt{localCm}" and counts "\texttt{localCk}" from all processors into global sums "\texttt{Cm}" and counts 
+\texttt{Ck}.
+
+\lstinputlisting[firstline=128, lastline=168, language=C]{codes/code.c}
+
+
+
+\subsection{\texttt{kmeans} Function}
+The master process initialize the centroids and broadcasts to all processes.
+\lstinputlisting[firstline=171, lastline=182, language=C]{codes/code.c}
+
+After \texttt{assignPoints} and \texttt{updateCentroids} functions, \texttt{MPI\_Allreduce} function used for finding the maximum error between the processors to compare with the tolerance. Then the master thread prints the error.
+\lstinputlisting[firstline=191, lastline=195, language=C]{codes/code.c}
+
+

@@ -1,0 +1,26 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Number of Threads},
+    ylabel={Execution Duration (seconds)},
+    xmin=0.5, xmax=8.5,
+    ymin=0, ymax=0.008,
+    xtick={1, 2, 4, 6, 8},
+    ytick={0.007537856000000,   0.003785955000000,   0.002982718000000,   0.002122019000000,   0.001639631000000},
+    ymajorgrids=true,
+    grid style=dashed,
+]
+\addplot[
+    color=orange,
+    mark=*,
+    ]
+    coordinates {
+    (1,0.007537856000000) (2,0.003785955000000) (4,0.002982718000000) (6,0.002122019000000) (8,0.001639631000000)
+    };
+
+\end{axis}
+\end{tikzpicture}
+\caption{Execution Duration vs. Number of Threads for Circle}
+\label{fig:circle}
+\end{figure}

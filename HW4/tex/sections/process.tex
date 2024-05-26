@@ -1,0 +1,21 @@
+\section{Strong Scaling Study}
+Number of used processes plays a crucial role in execution duration of the code. We expect that as the number of processes go up the execution duration should decrease. We have executed the code for varying the argument  \texttt{np} from 1 to 8 for all different data and the plot the execution duration versus number of processes. By this method we have performed strong scaling study.
+
+\subsection{Birch3}
+\input{figures/birch3}
+
+\subsection{Circle}
+\input{figures/circle}
+
+\subsection{Hepta}
+\input{figures/hepta}
+
+\subsection{Isolation}
+\input{figures/isolation}
+
+\subsection{Smile}
+\input{figures/smile}
+
+We can see that number of increase in processors mostly results in decaying the execution time. But we can also see that in some cases there are fluctuations, not an absolute monotonic decaying behavior in each case.  This behavior can be observed in the figure \ref{fig:hepta}. It can be observed from the figure \ref{fig:birch} when the data points are relatively large, increasing the processor number results in a monotonic decaying execution duration. These behaviors can be explained using the Gustafson’s law.
+
+

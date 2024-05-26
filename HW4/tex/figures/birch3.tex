@@ -1,0 +1,25 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Number of Threads},
+    ylabel={Execution Duration (seconds)},
+    xmin=0.5, xmax=8.5,
+    ymin=0..5, ymax=0.7,
+    xtick={1, 2, 4, 6, 8},
+    ytick={0.656673183, 0.337282581, 0.194313506, 0.123312713, 0.1061290290000 },
+    ymajorgrids=true,
+    grid style=dashed,
+]
+\addplot[
+    color=orange,
+    mark=*,
+    ]
+    coordinates {
+    (1,0.656673183) (2,0.337282581) (4,0.194313506) (6,0.123312713) (8,0.106129029)
+    };
+\end{axis}
+\end{tikzpicture}
+\caption{Execution Duration vs. Number of Threads for Birch3}
+\label{fig:birch}
+\end{figure}
