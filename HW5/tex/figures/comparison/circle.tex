@@ -1,0 +1,22 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        bar width=.6cm,
+        width=10cm,
+        height=6cm,
+        ylabel={Execution Duration (s)},
+        xlabel={Method},
+        symbolic x coords={Serial, OpenMP, GPU},
+        xtick=data,
+        nodes near coords,
+        ymin=0, ymax=0.02,
+        grid=major,
+        title={Execution Duration for circle}
+    ]
+        \addplot coordinates {(Serial,0.00953500) (OpenMP,0.00463942) (GPU,0.00400282)};
+    \end{axis}
+\end{tikzpicture}
+\caption{Comparison of execution duration for the dataset Circle: N4000 with different implementation methods. Experiments are conducted on an Intel i9-13980HX consumer CPU and NVIDIA RTX4070 consumer GPU with 512 threads per thread block}\label{fig:circle}
+\end{figure}

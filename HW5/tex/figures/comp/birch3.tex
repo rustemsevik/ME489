@@ -1,0 +1,22 @@
+% Birch
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={Threads per Block},
+        ylabel={Execution Duration (s)},
+        symbolic x coords={256, 512, 1024},
+        xtick=data,
+        ymin=0, ymax=0.05,
+        grid=major,
+        title={Execution Duration for birch3}
+    ]
+        \addplot coordinates {(256,0.0402075) (512,0.0331571) (1024,0.0357714)};
+        \addplot[mark=*] coordinates {(256,0.0402075) (512,0.0331571) (1024,0.0357714)};
+    \end{axis}
+\end{tikzpicture}
+\caption{Comparison of execution duration for the dataset Brich3: N10000 with different
+threads per thread block. Experiments are conducted on an NVIDIA RTX4070 consumer GPU}
+\end{figure}
+
+

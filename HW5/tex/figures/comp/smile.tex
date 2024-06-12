@@ -1,0 +1,20 @@
+% Smile
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={Threads per Block},
+        ylabel={Execution Duration (s)},
+        symbolic x coords={256, 512, 1024},
+        xtick=data,
+        ymin=0, ymax=0.015,
+        grid=major,
+        title={Execution Duration for smile}
+    ]
+        \addplot coordinates {(256,0.0089559) (512,0.00859648) (1024,0.0109578)};
+        \addplot[mark=*] coordinates {(256,0.0089559) (512,0.00859648) (1024,0.0109578)};
+    \end{axis}
+\end{tikzpicture}
+\caption{Comparison of execution duration for the dataset Smile: N1000 with different
+threads per thread block. Experiments are conducted on an NVIDIA RTX4070 consumer GPU}
+\end{figure}

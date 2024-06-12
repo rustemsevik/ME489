@@ -1,0 +1,37 @@
+\section{Code Structure}
+Since the general code structure is the same as the homework 2, this section only explains the changes made to the code of the homework 2. The code is based on the posted solution of homework 2.
+
+\subsection{\texttt{main} Function}
+In the \texttt{main} function memory allocation is performed by \texttt{cudaMallocManaged} in order to keep the memory syncronized between device and the host. The modified lines are as follows:
+\lstinputlisting[firstline=221, lastline=230, language=C]{codes/code.c}
+
+In order to measure the time \texttt{cuda} events are created as follows
+\lstinputlisting[firstline=235, lastline=238, language=C]{codes/code.c}
+
+Number of threads per thread block is defined as follows"
+\lstinputlisting[firstline=240, lastline=241, language=C]{codes/code.c}
+
+Record event started with following line
+\lstinputlisting[firstline=243, lastline=244, language=C]{codes/code.c}
+
+Record event ended and the elapsed time is calculated as follows with following line
+\lstinputlisting[firstline=249, lastline=258, language=C]{codes/code.c}
+
+Memory is freed in the device and the host by the function \texttt{cudaFree} demonstrated in the following lines
+\lstinputlisting[firstline=274, lastline=278, language=C]{codes/code.c}
+
+\subsection{\texttt{kmeans} Function}
+Since the resetting the arrays are only needed to be made once the \texttt{Ck} and \texttt{Cm} arrays are reset in the \texttt{kmeans} function. Newly created kernel functions are executed in the \texttt{kmeans} function. After each kernel function is called, the syncronization is made.
+\lstinputlisting[firstline=183, lastline=197, language=C]{codes/code.c}
+
+\subsection{\texttt{assignPointsKernel} Kernel Function}
+The previous \texttt{assignPoints} function is updated to be a kernel function as follows:
+\lstinputlisting[firstline=112, lastline=134, language=C]{codes/code.c}
+
+\subsection{\texttt{sumPointsKernel} Kernel Function}
+The previous \texttt{updateCentroids} are divided into two seperate functions one of them is the following \texttt{sumPointsKernel} function.
+\lstinputlisting[firstline=138, lastline=150, language=C]{codes/code.c}
+
+\subsection{\texttt{updateCentroids} Function}
+Rest of the parts left from the previous \texttt{updateCentroids} function are performed in the new \texttt{updateCentroids} function as follows:
+\lstinputlisting[firstline=154, lastline=164, language=C]{codes/code.c}

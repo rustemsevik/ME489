@@ -1,0 +1,39 @@
+\section{Comparison}
+\subsection{Comparison with Different Threads per Thread Block}
+
+\subsubsection{Brich3}
+\input{figures/comp/birch3}
+
+\subsubsection{Circle}
+\input{figures/comp/circle}
+
+\subsubsection{Hepta}
+\input{figures/comp/hepta}
+
+\subsubsection{Isolation}
+\input{figures/comp/isolation}
+
+\subsubsection{Smile}
+\input{figures/comp/circle}
+
+
+\subsection{Comparison with Different Methods}
+
+\subsubsection{Brich3}
+\input{figures/comparison/birch3}
+
+\subsubsection{Circle}
+\input{figures/comparison/circle}
+
+\subsubsection{Hepta}
+\input{figures/comparison/hepta}
+
+\subsubsection{Isolation}
+\input{figures/comparison/isolation}
+
+\subsubsection{Smile}
+\input{figures/comparison/circle}
+
+\subsection{Discussion for different parameter selection and different implementation methods}
+
+In our experiments comparing serial code, OpenMP, and CUDA parallelization, we observed that performance improvements are not always straightforward. The overhead of creating and managing threads sometimes outweighs the benefits of parallelization, especially for smaller tasks. Additionally, imbalanced workloads cause some threads to finish earlier and wait for others, reducing efficiency. Memory access contention, where multiple threads access memory simultaneously, creates bottlenecks. Synchronization points, where threads must wait for each other, also slow down parallel execution. CUDA's performance highly depends on having an optimal configuration and sufficiently large problem sizes; otherwise, the overhead of launching CUDA kernels can make it slower than serial or OpenMP implementations. Understanding these factors is crucial for optimizing parallel computing performance.

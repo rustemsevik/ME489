@@ -1,0 +1,23 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        bar width=.6cm,
+        width=10cm,
+        height=6cm,
+        ylabel={Execution Duration (s)},
+        xlabel={Method},
+        symbolic x coords={Serial, OpenMP, GPU},
+        xtick=data,
+        nodes near coords,
+        ymin=0, ymax=0.25,
+        grid=major,
+        title={Execution Duration for isolation}
+    ]
+        \addplot coordinates {(Serial,0.20156700) (OpenMP,0.05508956) (GPU,0.183065)};
+    \end{axis}
+\end{tikzpicture}
+\caption{Comparison of execution duration for the dataset Isolation: N9000 with different implementation methods. Experiments are conducted on an Intel i9-13980HX consumer CPU and NVIDIA RTX4070 consumer GPU with 512 threads per thread block}
+\label{fig:isolation}
+\end{figure}

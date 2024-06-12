@@ -1,0 +1,30 @@
+\section{CUDA}
+CUDA (Compute Unified Device Architecture), developed by NVIDIA, is a parallel computing platform and application programming interface (API) that allows developers to use NVIDIA GPUs for general-purpose processing (GPGPU). It extends the C, C++, and Fortran programming languages, enabling the execution of programs on the GPU, which can significantly accelerate computational tasks by exploiting the GPU's parallel processing capabilities. CUDA provides developers with a set of tools and libraries, such as cuBLAS for linear algebra and cuFFT for fast Fourier transforms, to optimize and implement high-performance applications in various fields, including scientific computing, machine learning, and data analysis.
+
+\begin{table}[h]
+    \caption{Summary of commonly used OpenMP API functions.}
+    \centering
+    \begin{tabular}{l|l}
+        \hline
+        \textbf{Action} & \textbf{CUDA API call} \\ \hline
+        Allocate array on DEVICE & \texttt{cudaMalloc(\&[POINTER], [NUMBER OF BYTES]);} \\ \hline
+        Allocate managed array on  & \texttt{cudaMallocManaged(\&[POINTER], [NUMBER OF} \\
+        HOST/DEVICE & \texttt{BYTES]);}
+        \\ \hline
+        Copy data from HOST to  & \texttt{cudaMemcpy([DEVICE POINTER], [HOST POINTER], } \\ 
+        DEVICE & \texttt{[NUMBER OF BYTES], cudaMemcpyHostToDevice);} \\
+        \hline
+        Copy data from DEVICE to  & \texttt{cudaMemcpy([HOST POINTER], [DEVICE POINTER], } \\
+        HOST & \texttt{[NUMBER OF BYTES], cudaMemcpyDeviceToHost);}
+        \\ \hline
+        Free DEVICE array & \texttt{cudaFree([DEVICE POINTER]);} \\ \hline
+        Launch kernel on DEVICE & \texttt{[KERNEL NAME] <<< [NUMBER OF THREAD BLOCKS], } \\ 
+        & \texttt{[THREADS PER THREAD-BLOCK] >>>([ARGS]);} \\
+        \hline
+        Block until DEVICE queue & \texttt{cudaDeviceSynchronize();} \\ 
+        flushes & \\ 
+        \hline
+    \end{tabular}
+\end{table}
+
+When using CUDA, several considerations are crucial to maximize performance and efficiency. First, ensure that your application is highly parallelizable, as CUDA's strengths lie in handling numerous simultaneous threads. Memory management is also vital; minimizing data transfers between the CPU and GPU can reduce latency. It's essential to optimize memory usage by leveraging different types of memory (global, shared, and constant) appropriately. Understanding and managing thread divergence is necessary to maintain efficiency, as divergent threads within a warp can lead to performance degradation. Finally, keep in mind that CUDA development requires compatible NVIDIA hardware and drivers, and staying updated with the latest CUDA toolkit versions can provide performance enhancements and new features.
